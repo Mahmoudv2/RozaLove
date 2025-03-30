@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>رسالة رومانسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      flex-direction: column;
+    }
+    .envelope-container {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      cursor: pointer;
+    }
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #f7b2c0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 50%;
+      background: #d07a8c;
+      border-radius: 10px 10px 0 0;
+      transform-origin: top;
+      transition: transform 1s ease-in-out;
+    }
+    .envelope-container.open .flap {
+      transform: rotateX(180deg);
+    }
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      height: 60%;
+      background: white;
+      border-radius: 5px;
+      transform: translate(-50%, -50%) scaleY(0);
+      transition: transform 1s ease-in-out 0.5s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    .envelope-container.open .letter {
+      transform: translate(-50%, -50%) scaleY(1);
+      opacity: 1;
+    }
+    .poem {
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #d07a8c;
+      text-align: center;
+    }
+    .roza-header {
+      margin-top: 20px;
+      font-size: 2em;
+      color: #fff;
+      opacity: 0;
+      transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+      position: relative;
+    }
+    .roza-header.fly {
+      opacity: 1;
+      transform: translateY(-50px) rotate(10deg);
+    }
+    .roza-header.settle {
+      transform: translateY(0) rotate(0);
+    }
+    @media (max-width: 600px) {
+    .envelope-container {
+    width: 320px;
+    height: 240px;
+    }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-container" onclick="openEnvelope()">
+    <div class="envelope"></div>
+    <div class="flap"></div>
+    <div class="letter">
+      <div id="poem" class="poem"></div>
+    </div>
+  </div>
+  <div id="roza" class="roza-header">Roza</div>  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>  <script>
+    function openEnvelope() {
+      document.querySelector('.envelope-container').classList.add('open');
+      setTimeout(() => {
+        var typed = new Typed("#poem", {
+          strings: [
+          "هنيئاً لكِ العيدُ الذي أنتِ عيدُهُ",
+  "وأنَّكِ من فيضِ البهاءِ تُزيدُهُ",
+  "",
+  "وإنِّي وإنْ أهداكِ غيري ورودَهُ",
+  "سأُهديكِ قلباً أنتِ فيهِ وَريدُهُ"
+],
+          typeSpeed: 80,
+          backSpeed: 20,
+          loop: false,
+          onComplete: function() {
+            let roza = document.getElementById('roza');
+            roza.classList.add('fly');
+            setTimeout(() => {
+              roza.classList.add('settle');
+            }, 2000);
+          }
+        });
+      }, 1000);
+    }
+  </script></body>
+</html>
